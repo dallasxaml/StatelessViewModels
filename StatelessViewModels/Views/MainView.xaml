@@ -14,6 +14,18 @@
                     UpdateSourceTrigger=PropertyChanged}" />
             <TextBlock
                 Text="{Binding Name}" />
+            <ListBox
+                ItemsSource="{Binding Items}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock
+                            Text="{Binding Name}" />
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <Button
+                Command="{Binding AddItem}"
+                Content="Add Item" />
         </StackPanel>  
     </Grid>
 </UserControl>
