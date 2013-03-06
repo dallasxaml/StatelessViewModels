@@ -15,7 +15,8 @@
             <TextBlock
                 Text="{Binding Name}" />
             <ListBox
-                ItemsSource="{Binding Items}">
+                ItemsSource="{Binding Items}"
+                SelectedItem="{Binding SelectedItem}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <TextBlock
@@ -26,6 +27,9 @@
             <Button
                 Command="{Binding AddItem}"
                 Content="Add Item" />
+            <Button
+                Command="{Binding DeleteItem}"
+                Content="Delete Item" />
         </StackPanel>  
     </Grid>
 </UserControl>

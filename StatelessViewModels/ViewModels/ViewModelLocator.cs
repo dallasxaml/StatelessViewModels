@@ -24,6 +24,11 @@ namespace StatelessViewModels.ViewModels
             get { return ViewModel(() => new MainViewModel(_document, _selection)); }
         }
 
+        public object ItemDetail
+        {
+            get { return ViewModel(() => new ItemDetailViewModel(_selection)); }
+        }
+
 		public object Item
 		{
 			get
