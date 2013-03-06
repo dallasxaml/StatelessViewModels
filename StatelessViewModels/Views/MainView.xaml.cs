@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using StatelessViewModels.ViewModels;
+using UpdateControls.XAML;
 
 namespace StatelessViewModels.Views
 {
@@ -23,6 +25,20 @@ namespace StatelessViewModels.Views
         public MainView()
         {
             InitializeComponent();
+
+            MainViewModel vm = ForView.Unwrap<MainViewModel>(DataContext);
+            vm.DeletePrompt += ViewModelDeletePrompt;
+        }
+
+        bool ViewModelDeletePrompt(string arg)
+        {
+            var result = MessageBox.Show(arg, "Delete?", MessageBoxButton.YesNo);
+            return result == MessageBoxResult.Yes;
+        }
+
+        private void UserControl_Loaded_1(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

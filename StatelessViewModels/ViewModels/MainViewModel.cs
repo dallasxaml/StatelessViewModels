@@ -47,7 +47,10 @@ namespace StatelessViewModels.ViewModels
             set
             {
                 if (value != null)
+                {
+
                     _selection.SelectedItem = value.Item;
+                }
             }
         }
 
@@ -73,6 +76,8 @@ namespace StatelessViewModels.ViewModels
             }
         }
 
+        public event Func<string, bool> DeletePrompt;
+
         public ICommand DeleteItem
         {
             get
@@ -81,8 +86,12 @@ namespace StatelessViewModels.ViewModels
                     .When(() => _selection.SelectedItem != null)
                     .Do(delegate
                     {
-                        _document.DeleteItem(_selection.SelectedItem);
-                        _selection.SelectedItem = null;
+                        if (DeletePrompt == null ||
+                            DeletePrompt("Are you sure you want to delete " + _selection.SelectedItem.Name + "?"))
+                        {
+                            _document.DeleteItem(_selection.SelectedItem);
+                            _selection.SelectedItem = null;
+                        }
                     });
             }
         }
